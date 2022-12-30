@@ -63,12 +63,17 @@ img {
   display: flex;
   margin-left: 77px;
 }
+.site-nav .item {
+  position: relative;
+}
 .site-nav .link {
   color: var(--headings-color);
 
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1.5;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .site-nav .link:hover,
 .site-nav a:focus {
@@ -76,6 +81,16 @@ img {
 }
 .site-nav .link:active {
   color: var(--primery-color);
+}
+.current::after {
+  position: absolute;
+  bottom: 0;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #404BBF;
+  border-radius: 2px;
 }
 .auth-nav {
   display: flex;
@@ -87,6 +102,8 @@ img {
 
   letter-spacing: 0.02em;
   line-height: 1.5;
+  
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .auth-nav .link:hover,
 .auth-nav .link:focus {
@@ -137,6 +154,9 @@ img {
   letter-spacing: 0.04em;
 
   cursor: pointer;
+  
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-secondary {
   color: var(--primery-color);
@@ -152,12 +172,34 @@ img {
   letter-spacing: 0.04em;
 
   cursor: pointer;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+/* Modal Window */
 .btn-modal {
   position: absolute;
   right: 24px;
   top: 24px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #E7E9FC;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-modal:hover {
+  background: #404bbf;
+  color: var(--primery-white-color);
 }
 .backdrop {
   position: fixed;
@@ -167,6 +209,9 @@ img {
   height: 100%;
 
   background-color: rgba(46, 47, 66, 0.4);
+  opacity: 1;
+  
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .backdrop.is-hidden {
   opacity: 0;
@@ -177,7 +222,7 @@ img {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
+  
   min-width: 408px;
   min-height: 576px;
   background: #FCFCFC;
@@ -185,12 +230,10 @@ img {
   border-radius: 4px;
 }
 .btn-primery:hover,
-.btn-primery:focus {
-  background: var(--primery-color);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-}
+.btn-primery:focus,
 .btn-primery:active {
   background: #404bbf;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
 .btn-secondary:active,
 .btn-secondary:hover,
@@ -304,6 +347,8 @@ img {
   height: 40px;
   margin: 4px 0;
   border-radius: 50%;
+  
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .link-box:hover,
 .link-box:focus {
@@ -327,6 +372,9 @@ img {
   color: #8E8F99;
   border: 1px solid #8E8F99;
   border-radius: 4px;
+  
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .customers-link-box:hover,
 .customers-link-box:focus {
@@ -347,11 +395,12 @@ img {
   margin-right: 24px;
   margin-bottom: 48px;
   
-  cursor: pointer;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* .projects-list .item:hover {
-
-} */
+.projects-list .item:hover,
+.projects-list .item a:focus {
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
 .projects-list .item:nth-child(3n) {
   margin-right: 0;
 }
@@ -365,17 +414,21 @@ img {
   letter-spacing: 0.02em;
   line-height: 1.2;
 }
+.projects-list .text {
+  color: var(--bodytext-color);
+}
+.project-link {
+  text-decoration: none;
+}
 .hover-box {
   position: relative;
   overflow: hidden;
 }
-.projects-list .item:hover .overlay {
+.project-link:hover .overlay,
+.project-link:focus .overlay {
   transform: translateY(0);
-  
 }
-.projects-list .item:hover {
-  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
-}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -384,7 +437,7 @@ img {
   height: 100%;
   padding: 40px 32px 164px 32px;
   background-color: var(--primery-color);
-
+  
   transform: translateY(100%);
   transition: transform 250ms ease;
 }
@@ -446,6 +499,8 @@ img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .footer-link:hover,
 .footer-link:focus {
